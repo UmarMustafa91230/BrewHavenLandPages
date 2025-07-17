@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew Haven | Artisan Coffee Shop</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+   <style>
+    
+        /* === Global Styles === */
+        :root {
+            --primary: #4B2E2B;      /* Coffee Brown */
+            --secondary: #F7EBDD;    /* Cream */
+            --accent: #D8C3A5;       /* Latte Beige */
+            --text: #2A2118;
+            --light: #FFFFFF;
+            --dark: #1A120B;
+            
+            /* Dark mode variables */
+            --bg-primary: #F9F5F0;
+            --bg-secondary: #FFFFFF;
+        }
+        
+        /* Dark mode colors */
+        .dark-mode {
+            --primary: #D8C3A5;
+            --secondary: #4B2E2B;
+            --accent: #2A2118;
+            --text: #F7EBDD;
+            --light: #1A120B;
+            --dark: #F9F5F0;
+            
+            --bg-primary: #1A120B;
+            --bg-secondary: #2A2118;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background-color: var(--bg-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: var(--secondary);
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* === Header & Navigation === */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s;
+        }
+        
+        header.scrolled {
+            background-color: rgba(75, 46, 43, 0.9);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        header.scrolled .logo,
+        header.scrolled nav ul li a {
+            color: var(--secondary);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        /* === Hero Section === */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: var(--secondary);
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        /* Coffee steam animation */
+        .coffee-cup {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            z-index: 1;
+        }
+        
+        .steam {
+            position: absolute;
+            height: 150px;
+            width: 100px;
+            top: -150px;
+            left: 0;
+        }
+        
+        .steam span {
+            position: relative;
+            bottom: 50px;
+            display: block;
+            margin: 0 auto;
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            opacity: 0;
+            filter: blur(8px);
+            animation: steam 4s infinite;
+        }
+        
+        .steam span:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+        
+        .steam span:nth-child(2) {
+            animation-delay: 1s;
+        }
+        
+        .steam span:nth-child(3) {
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes steam {
+            0% {
+                transform: translateY(0) translateX(0) scale(0.25);
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-200px) translateX(-20px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* === About Section === */
+        .about {
+            background-color: var(--bg-secondary);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        
+        .about-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .about-text h2 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
+        }
+        
+        .about-image.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* === Menu Section === */
+        .menu {
+            background-color: var(--bg-primary);
+        }
+        
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            background: none;
+            border: 1px solid var(--accent);
+            color: var(--text);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background-color: var(--primary);
+            color: var(--secondary);
+            border-color: var(--primary);
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .menu-item-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .menu-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .menu-item:hover .menu-item-img img {
+            transform: scale(1.1);
+        }
+        
+        .menu-item-content {
+            padding: 20px;
+        }
+        
+        .menu-item-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .menu-item-title h3 {
+            color: var(--primary);
+        }
+        
+        .menu-item-price {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 18px;
+        }
+        
+        .menu-item-desc {
+            color: var(--text);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .menu-item-category {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+        }
+        
+        /* === Special Section === */
+        .special {
+            background: linear-gradient(to right, var(--bg-secondary) 50%, var(--accent) 50%);
+            padding: 0;
+        }
+        
+        .special-container {
+            display: flex;
+            min-height: 500px;
+        }
+        
+        .special-content {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .special-content h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .special-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .special-content p {
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+        
+        .special-image {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+        }
+        
+        .countdown {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .countdown-item {
+            text-align: center;
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 70px;
+        }
+        
+        .countdown-number {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .countdown-label {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        
+        /* === Reviews Section === */
+        .reviews {
+            background-color: var(--bg-secondary);
+        }
+        
+        .reviews-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .reviews-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            gap: 30px;
+            padding-bottom: 20px;
+        }
+        
+        .review-card {
+            min-width: 300px;
+            scroll-snap-align: start;
+            background-color: var(--bg-primary);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .review-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 3px solid var(--accent);
+        }
+        
+        .review-stars {
+            color: var(--accent);
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .review-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .review-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            opacity: 0.5;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .slider-dot.active {
+            opacity: 1;
+            background-color: var(--primary);
+        }
+        
+        /* === Contact Section === */
+        .contact {
+            background-color: var(--bg-primary);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .contact-form {
+            flex: 1;
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--accent);
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .map {
+            height: 300px;
+            margin-top: 50px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* === Footer === */
+        footer {
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* === Mobile Navigation === */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(75, 46, 43, 0.95);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.3s;
+        }
+        
+        .mobile-nav.active {
+            transform: translateY(0);
+        }
+        
+        .mobile-nav ul {
+            list-style: none;
+            text-align: center;
+        }
+        
+        .mobile-nav ul li {
+            margin: 20px 0;
+        }
+        
+        .mobile-nav ul li a {
+            color: var(--secondary);
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .mobile-nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        /* === Bottom Navigation (Mobile) === */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary);
+            display: none;
+            justify-content: space-around;
+            padding: 15px 0;
+            z-index: 999;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--secondary);
+            font-size: 12px;
+        }
+        
+        .bottom-nav-item i {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .bottom-nav-item.active {
+            color: var(--accent);
+        }
+        
+        /* === Scroll to Top Button === */
+        /*.scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+        
+        /* === Dark Mode Toggle === */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: none;
+            color: var(--primary);
+            font-size: 20px;
+        }
+        
+        /* === Chat Bubble === */
+        /*.chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 99;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .chat-bubble:hover {
+            transform: scale(1.1);
+            background-color: var(--accent);
+            color: var(--primary);
+        }*/
+        
+        /* === Responsive Styles === */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 60px;
+            }
+            
+            .special-container {
+                flex-direction: column;
+            }
+            
+            .special-content {
+                padding: 40px;
+            }
+            
+            .special-image {
+                height: 400px;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .bottom-nav {
+                display: flex;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .countdown {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                min-width: 60px;
+            }
+            
+            .countdown-number {
+                font-size: 20px;
+            }
+
+            /* === Chat Bubble === */
+/*.chat-bubble {
+    position: fixed;
+    bottom: 100px; /* Increased from 30px to position above other elements */
+    /*right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary);
+    color: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 99;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}*/
+
+/* For mobile view, position above the bottom nav */
+/*@media (max-width: 768px) {
+    .chat-bubble {
+        bottom: 80px; /* Position above the bottom navigation */
+ /*   }
+}
+
+/* Ensure scroll-to-top button is positioned correctly */
+/*.scroll-top {
+    bottom: 30px; /* Keep original position */
+    /*right: 30px;
+    /* ... rest of your existing styles ... */
+}
+/* === Chat Bubble === */
+.chat-bubble {
+    position: fixed;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary);
+    color: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 99;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}
+
+/* === Scroll to Top Button === */
+.scroll-top {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary);
+    color: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 99;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    right: 30px;
+}
+
+.scroll-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Desktop View (769px and above) */
+@media (min-width: 769px) {
+    .chat-bubble {
+        bottom: 90px; /* Chat bubble above scroll button */
+    }
+    .scroll-top {
+        bottom: 30px; /* Scroll button at bottom */
+    }
+}
+
+/* Tablet View (481px to 768px) */
+@media (max-width: 768px) {
+    .chat-bubble {
+        bottom: 80px; /* Above bottom nav */
+        right: 25px;
+    }
+    .scroll-top {
+        bottom: 25px;
+        right: 25px;
+    }
+}
+
+/* Mobile View (480px and below) */
+@media (max-width: 480px) {
+    .chat-bubble {
+        bottom: 70px;
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+        right: 20px;
+    }
+    .scroll-top {
+        bottom: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        right: 20px;
+    }
+    
+    /* Extra space for footer */
+    footer {
+        padding-bottom: 100px;
+    }
+}
+
+/* Hover Effects */
+.chat-bubble:hover {
+    transform: scale(1.1);
+    background-color: var(--accent);
+    color: var(--primary);
+}
+
+.scroll-top:hover {
+    background-color: var(--accent);
+    color: var(--primary);
+}
+        
+
+   </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">Brew <span>Haven</span></a>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#special">Special</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-btn" id="closeBtn">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#special">Special</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Artisan Coffee Crafted with Care</h1>
+            <p>Experience the perfect blend of premium beans and cozy ambiance at Brew Haven</p>
+            <a href="#menu" class="btn">View Menu</a>
+        </div>
+        
+        <div class="coffee-cup">
+            <div class="steam">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Discover Our Passion for Coffee</h2>
+                    <p>Founded in 2010, Brew Haven began as a small passion project between two coffee enthusiasts. What started as a dream to share exceptional coffee has grown into a beloved community gathering place.</p>
+                    <p>We source only the finest organic beans from sustainable farms around the world, roasting them in-house to bring out their unique flavors.</p>
+                    <p>Our baristas are trained artisans, crafting each drink with precision and care. At Brew Haven, we believe coffee is more than a beverage—it's an experience to be savored.</p>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coffee shop interior">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            
+            <div class="menu-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="coffee">Coffee</button>
+                <button class="filter-btn" data-filter="tea">Tea</button>
+                <button class="filter-btn" data-filter="dessert">Desserts</button>
+            </div>
+            
+            <div class="menu-grid">
+                <!-- Coffee Items -->
+                <div class="menu-item" data-category="coffee">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Espresso">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Espresso</h3>
+                            <span class="menu-item-price">$3.50</span>
+                        </div>
+                        <p class="menu-item-desc">A concentrated coffee beverage brewed by forcing hot water under pressure through finely ground coffee.</p>
+                    </div>
+                    <span class="menu-item-category">Coffee</span>
+                </div>
+                
+                <div class="menu-item" data-category="coffee">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Cappuccino">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Cappuccino</h3>
+                            <span class="menu-item-price">$4.50</span>
+                        </div>
+                        <p class="menu-item-desc">Espresso combined with steamed milk and a silky layer of foam, finished with a dusting of chocolate.</p>
+                    </div>
+                    <span class="menu-item-category">Coffee</span>
+                </div>
+                
+                <div class="menu-item" data-category="coffee">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Latte">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Latte</h3>
+                            <span class="menu-item-price">$4.75</span>
+                        </div>
+                        <p class="menu-item-desc">Smooth espresso balanced with steamed milk and a light layer of foam.</p>
+                    </div>
+                    <span class="menu-item-category">Coffee</span>
+                </div>
+                
+                <!-- Tea Items -->
+                <div class="menu-item" data-category="tea">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Earl Grey">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Earl Grey</h3>
+                            <span class="menu-item-price">$3.00</span>
+                        </div>
+                        <p class="menu-item-desc">Classic black tea flavored with oil of bergamot, served with lemon or milk.</p>
+                    </div>
+                    <span class="menu-item-category">Tea</span>
+                </div>
+                
+                <div class="menu-item" data-category="tea">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Chamomile">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Chamomile</h3>
+                            <span class="menu-item-price">$3.25</span>
+                        </div>
+                        <p class="menu-item-desc">Soothing herbal tea made from chamomile flowers, naturally caffeine-free.</p>
+                    </div>
+                    <span class="menu-item-category">Tea</span>
+                </div>
+                
+                <div class="menu-item" data-category="tea">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Matcha Latte">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Matcha Latte</h3>
+                            <span class="menu-item-price">$5.00</span>
+                        </div>
+                        <p class="menu-item-desc">Vibrant green tea powder whisked with steamed milk for a creamy, antioxidant-rich drink.</p>
+                    </div>
+                    <span class="menu-item-category">Tea</span>
+                </div>
+                
+                <!-- Dessert Items -->
+                <div class="menu-item" data-category="dessert">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Croissant">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Butter Croissant</h3>
+                            <span class="menu-item-price">$3.50</span>
+                        </div>
+                        <p class="menu-item-desc">Flaky, buttery French pastry made with layers of yeast-leavened dough.</p>
+                    </div>
+                    <span class="menu-item-category">Dessert</span>
+                </div>
+                
+                <div class="menu-item" data-category="dessert">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Chocolate Cake">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Chocolate Cake</h3>
+                            <span class="menu-item-price">$5.50</span>
+                        </div>
+                        <p class="menu-item-desc">Rich, moist chocolate cake layered with chocolate ganache.</p>
+                    </div>
+                    <span class="menu-item-category">Dessert</span>
+                </div>
+                
+                <div class="menu-item" data-category="dessert">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Cinnamon Roll">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Cinnamon Roll</h3>
+                            <span class="menu-item-price">$4.00</span>
+                        </div>
+                        <p class="menu-item-desc">Sweet rolled pastry swirled with cinnamon sugar and topped with cream cheese icing.</p>
+                    </div>
+                    <span class="menu-item-category">Dessert</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Special Section -->
+    <section class="special" id="special">
+        <div class="special-container">
+            <div class="special-content">
+                <h2>Today's Special</h2>
+                <h3>Honey Lavender Latte</h3>
+                <p>A delightful blend of our signature espresso, steamed milk, local honey, and just a hint of lavender for a floral, soothing twist on the classic latte.</p>
+                
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">12</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">34</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">56</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+                
+                <p><strong>Only $4.25</strong> (Regularly $5.50)</p>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+            
+            <div class="special-image"></div>
+        </div>
+    </section>
+    
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            
+            <div class="reviews-container">
+                <div class="reviews-slider" id="reviewsSlider">
+                    <div class="review-card">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer" class="review-avatar">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"The best coffee in town! The atmosphere is so cozy and the baristas are incredibly friendly. I come here every weekend."</p>
+                        <p class="review-author">- Sarah J.</p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Customer" class="review-avatar">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"As a coffee connoisseur, I can confidently say Brew Haven serves exceptional quality. Their single-origin pour-over is perfection."</p>
+                        <p class="review-author">- Michael T.</p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer" class="review-avatar">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="review-text">"I love working from Brew Haven. Great WiFi, delicious coffee, and the most comfortable chairs. The matcha latte is my favorite!"</p>
+                        <p class="review-author">- Emily R.</p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer" class="review-avatar">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"The cinnamon rolls are to die for! Paired with their cold brew, it's the perfect breakfast combo. Highly recommend!"</p>
+                        <p class="review-author">- David L.</p>
+                    </div>
+                </div>
+                
+                <div class="slider-nav" id="sliderNav">
+                    <button class="slider-dot active" data-index="0"></button>
+                    <button class="slider-dot" data-index="1"></button>
+                    <button class="slider-dot" data-index="2"></button>
+                    <button class="slider-dot" data-index="3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Visit Us</h2>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <p>123 Coffee Lane, Beanville, CA 90210</p>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <p>(+92) 342 479-91230</p>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <p>um7554057@gmail.com</p>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <p>Mon-Fri: 7am - 7pm<br>Sat-Sun: 8am - 6pm</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215573291865!2d-73.9878449245372!3d40.74844097138978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1687893122284!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Brew Haven</h3>
+                    <p>Artisan coffee crafted with care. We're passionate about serving the finest coffee in a warm, welcoming environment.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#special">Today's Special</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Menu</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Coffee</a></li>
+                        <li><a href="#">Tea</a></li>
+                        <li><a href="#">Desserts</a></li>
+                        <li><a href="#">Seasonal Specials</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates, special offers, and more.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" class="form-control" style="margin-bottom: 10px;">
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Brew Haven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav">
+        <a href="#home" class="bottom-nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#menu" class="bottom-nav-item">
+            <i class="fas fa-coffee"></i>
+            <span>Menu</span>
+        </a>
+        <a href="#contact" class="bottom-nav-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Visit</span>
+        </a>
+    </nav>
+    
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <!-- Chat Bubble -->
+    <div class="chat-bubble" id="chatBubble">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        
+        // Document Ready Function
+        document.addEventListener('DOMContentLoaded', function() {
+            // === Mobile Navigation ===
+            const hamburger = document.getElementById('hamburger');
+            const mobileNav = document.getElementById('mobileNav');
+            const closeBtn = document.getElementById('closeBtn');
+            
+            hamburger.addEventListener('click', function() {
+                mobileNav.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Close mobile nav when clicking a link
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileNav.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // === Sticky Header ===
+            const header = document.getElementById('header');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // === Scroll Reveal Animation ===
+            const aboutText = document.querySelector('.about-text');
+            const aboutImage = document.querySelector('.about-image');
+            
+            function checkScroll() {
+                const scrollPosition = window.scrollY;
+                const aboutPosition = aboutText.offsetTop - window.innerHeight + 100;
+                
+                if (scrollPosition > aboutPosition) {
+                    aboutText.classList.add('visible');
+                    aboutImage.classList.add('visible');
+                }
+            }
+            
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Check on load
+            
+            // === Menu Filter ===
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    menuItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // === Countdown Timer ===
+            function updateCountdown() {
+                const now = new Date();
+                const endOfDay = new Date();
+                endOfDay.setHours(23, 59, 59, 999);
+                
+                const diff = endOfDay - now;
+                
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // === Reviews Slider ===
+            const reviewsSlider = document.getElementById('reviewsSlider');
+            const sliderDots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            
+            function goToSlide(index) {
+                reviewsSlider.scrollTo({
+                    left: index * reviewsSlider.offsetWidth,
+                    behavior: 'smooth'
+                });
+                
+                // Update dots
+                sliderDots.forEach(dot => dot.classList.remove('active'));
+                sliderDots[index].classList.add('active');
+                
+                currentSlide = index;
+            }
+            
+            // Click on dots
+            sliderDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-index'));
+                    goToSlide(slideIndex);
+                });
+            });
+            
+            // Auto slide
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % sliderDots.length;
+                goToSlide(currentSlide);
+            }, 5000);
+            
+            // === Scroll to Top ===
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('active');
+                } else {
+                    scrollTopBtn.classList.remove('active');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // === Dark Mode Toggle ===
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                // Toggle icon
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // === Chat Bubble ===
+            const chatBubble = document.getElementById('chatBubble');
+            
+            chatBubble.addEventListener('click', function() {
+                // In a real implementation, this would open a chat widget
+                // For demo, we'll simulate opening WhatsApp
+                window.open('https://wa.me/+923424791230', '_blank');
+            });
+            
+            // === Form Submission ===
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                // Here you would typically send the data to a server
+                // For demo, we'll just show an alert
+                alert(`Thank you, ${name}! Your message has been sent. We'll get back to you soon at ${email}.`);
+                
+                // Reset form
+                contactForm.reset();
+            });
+            
+            // === Mobile Bottom Nav Active State ===
+            const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+            
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                
+                document.querySelectorAll('section').forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        bottomNavItems.forEach(item => {
+                            item.classList.remove('active');
+                            if (item.getAttribute('href') === `#${sectionId}`) {
+                                item.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Smooth scrolling for all links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
