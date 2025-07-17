@@ -77,7 +77,7 @@ brew-haven/
 
 | Desktop View | Mobile View |
 |--------------|-------------|
-| ![Desktop Screenshot](insert-desktop-image-link-here) | ![Mobile Screenshot](insert-mobile-image-link-here) |
+| ![Desktop Screenshot](insert-desktop-image-link-here) | ![Mobile Screenshot](https://github.com/UmarMustafa91230/BrewHavenLandPages/blob/main/Screenshot_18-7-2025_43016_serene-stroopwafel-52d281.netlify.app.jpeg) |
 
 ---
 
