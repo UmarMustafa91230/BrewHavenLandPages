@@ -1,4 +1,4 @@
-
+![logo](https://github.com/UmarMustafa91230/BrewHavenLandPages/blob/main/banner.jpeg)
 # ☕ Brew Haven – Coffee Shop Responsive Landing Page
 
 Welcome to **Brew Haven**, a modern, elegant, and fully responsive landing page designed for a fictional coffee shop. This project showcases a professional front-end design with smooth animations, interactive elements, and a mobile-first approach — perfect for real-world businesses like cafés, tuck shops, or food outlets.
@@ -45,48 +45,38 @@ Welcome to **Brew Haven**, a modern, elegant, and fully responsive landing page 
 - **HTML5**
 - **CSS3** (Flexbox + Grid + Animations)
 - **JavaScript (Vanilla JS)**
-- *(Optional: Bootstrap or Tailwind CSS for layout utility classes)*
+- *( Bootstrap or Tailwind CSS for layout utility classes)*
 
----
 
-## 📁 Folder Structure
 
-```
 
-brew-haven/
-│
-├── assets/
-│   ├── images/
-│   ├── icons/
-│   └── fonts/
-│
-├── css/
-│   └── styles.css
-│
-├── js/
-│   └── main.js
-│
-├── index.html
-└── README.md
-
-````
 
 ---
 
 ## 📸 Screenshots
 
-| Desktop View | Mobile View |
-|--------------|-------------|
-| ![Desktop Screenshot](insert-desktop-image-link-here) | ![Mobile Screenshot](https://github.com/UmarMustafa91230/BrewHavenLandPages/blob/main/Screenshot_18-7-2025_43016_serene-stroopwafel-52d281.netlify.app.jpeg) |
+### 🖥️ Desktop View
+
+![Desktop Screenshot](https://github.com/UmarMustafa91230/BrewHavenLandPages/blob/main/Screenshot_18-7-2025_43541_serene-stroopwafel-52d281.netlify.app.jpeg)
 
 ---
+
+### 📱 Mobile Views
+
+| Mobile View 1 | Mobile View 2 |
+|---------------|---------------|
+| ![Mobile 1](https://github.com/UmarMustafa91230/BrewHavenLandPages/blob/main/Screenshot_18-7-2025_43016_serene-stroopwafel-52d281.netlify.app.jpeg) | ![Mobile 2](https://github.com/UmarMustafa91230/BrewHavenLandPages/blob/main/Screenshot_18-7-2025_43147_serene-stroopwafel-52d281.netlify.app.jpeg) |
+
+| Mobile View 3 | Mobile View 4 |
+|---------------|---------------|
+| ![Mobile 3](https://github.com/UmarMustafa91230/BrewHavenLandPages/blob/main/Screenshot_18-7-2025_43239_serene-stroopwafel-52d281.netlify.app.jpeg) | ![Mobile 4](https://github.com/UmarMustafa91230/BrewHavenLandPages/blob/main/Screenshot_18-7-2025_43328_serene-stroopwafel-52d281.netlify.app.jpeg) |
 
 ## 📦 How to Use
 
 1. Clone the repo:
    ```bash
    git clone https://github.com/yourusername/brew-haven.git
-````
+```
 
 2. Open the project folder:
 
@@ -96,7 +86,6 @@ brew-haven/
 
 3. Open `index.html` in your browser or use a local server like Live Server.
 
----
 
 ## 💡 Use Cases
 
@@ -118,9 +107,9 @@ brew-haven/
 ## 📬 Contact
 
 Want a similar website for your business?
-📧 Email: [your-email@example.com](mailto:your-email@example.com)
+📧 Email: [um7554057@gmail.com](mailto:um7554057@gmail.com)
 🌐 Portfolio: [umarcheema.netlify.app](https://umarcheema.netlify.app)
-📱 Instagram: [@yourhandle](https://instagram.com)
+📱 Instagram: [@umar_cheema._](https://instagram.com/umar_cheema._)
 
 ---
 
